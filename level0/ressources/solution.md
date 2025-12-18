@@ -86,8 +86,7 @@ No !
 level0@RainFall:~$ ./level0 423
 $ whoami
 level1
-$ cd /home/user/level1
-$ cat .pass
+$ cat /home/user/level1/.pass
 ***************************************
 $
 ```
