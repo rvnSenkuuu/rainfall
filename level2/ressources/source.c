@@ -7,7 +7,7 @@ void	p(void)
 	char	buffer[76];
 	
 	fflush(stdout);
-	ret = gets(buffer);
+	ret = __builtin_return_address(0);
 	if ((ret & 0xb0000000) == 0xb0000000) {
 		printf("(%p)\n", ret);
 		exit(1);

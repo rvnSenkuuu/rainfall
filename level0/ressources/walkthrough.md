@@ -1,6 +1,6 @@
 # Level 0
 
-Nous pouvons voir qu'on a uniquement un executable 'level0' avec des permissions setuid ce qui signifie qu'on va l'executer avec les permissions du prochain level
+Nous pouvons voir qu'on a uniquement un executable `level0` avec des permissions setuid ce qui signifie qu'on va l'executer avec les permissions du prochain level
 
 ```bash
 level0@RainFall:~$ ls -la 
@@ -78,7 +78,7 @@ $1 = 423
 0x80c5350:	 "No !\n"
 ```
 
-On peut voir que l'executable prends un argument puis le compare avec la valeur '0x1a7' qui est 423 en hexadecimal. Appel le syscall execv avec en parametre la chaine de caractere '/bin/sh' ce qui doit nous donner acces a un shell.
+On peut voir que l'executable prends un argument puis le compare avec la valeur `0x1a7` qui est `423` en hexadecimal. Appel le syscall `execv` avec en parametre la chaine de caractere `/bin/sh` ce qui doit nous donner acces a un shell.
 
 ```bash
 level0@RainFall:~$ ./level0 667
