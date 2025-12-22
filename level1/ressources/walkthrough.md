@@ -52,7 +52,7 @@ Grace au resultat de objdump on peut s'apercevoir que:
 
 La technique employee est un ret2func, qui consiste a deborder le buffer jusqu’a ecraser l’adresse de retour (registre `EIP`) afin de la remplacer par l’adresse de la fonction run
 
-Pour cela on va faire ca en une ligne avec python remplir les 76 premiers octets puis rajouter l'addresse la fonction qu'on souhaite executer dans les 4 derniers octets
+Pour cela on va faire ca en une ligne avec python remplir les 76 premiers octets puis rajouter l'adresse la fonction qu'on souhaite executer dans les 4 derniers octets
 ```python
 python -c 'print("A" * 76 + "\x44\x84\x04\x08")
 ```
