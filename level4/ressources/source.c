@@ -10,9 +10,9 @@ void	p(char *buffer)
 
 void	n(void)
 {
-	char	buffer[512];
+	char	buffer[520];
 
-	fgets(buffer, 512, stdin);
+	fgets(buffer, 520, stdin);
 	p(buffer);
 	if (m == 0x1025544)
 		system("/bin/cat /home/user/level5/.pass");

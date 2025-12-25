@@ -59,12 +59,7 @@ level3:     file format elf32-i386
 
 SYMBOL TABLE:
 ....
-080484a4 g     F .text	00000076              v
-....
 0804988c g     O .bss	00000004              m
-08049880 g     O .bss	00000004              stdout@@GLIBC_2.0
-08049844 g       *ABS*	00000000              __bss_start
-0804851a g     F .text	0000000d              main
 ....
 ```
 
