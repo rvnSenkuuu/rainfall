@@ -48,7 +48,7 @@ level5@RainFall:~$ objdump -R level5  | grep 'exit'
 
 Pour ce niveau une fois l'executable desassembler avec `ghidra` et l'utilisation de `objdump` on remarque que l'on doit appeler la fonction `o` pour executer un shell mais que le programme n'utilise pas de `return` mais plutot `exit`
 
-La solution est donc de reecrire l'adresse d'`exit` dans le `GOT` (Global offset table un tableau contenant toutes les adresses des fonctions de la `libc`) par l'adresse de la fonction `o`
+La solution est donc de reecrire l'adresse d'`exit` dans le `GOT` (Global Offset Table un tableau contenant toutes les adresses des fonctions de la `libc` trouve dynamiquement) par l'adresse de la fonction `o`
 
 Cherchons aussi l'offset de notre buffer qui est `4`
 ```bash
