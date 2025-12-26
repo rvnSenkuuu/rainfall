@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 char	c[68];
 
@@ -8,6 +9,12 @@ typedef struct {
 	int	x;
 	char	*buffer;
 } Foo;
+
+void	m(void)
+{
+	time_t	t = time(NULL);
+	printf("%s - %d\n", c, t);
+}
 
 int	main(int argc, char **argv)
 {
