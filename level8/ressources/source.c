@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-char	*auth;
-char	*service;
+char	*auth = NULL;
+char	*service = NULL;
 
 int	main(void)
 {
@@ -26,7 +26,7 @@ int	main(void)
 			free(auth);
 
 		if (!strncmp(input, "service", 6))
-			service = strdup(input);
+			service = strdup(&input[7]);
 
 		if (!strncmp(input, "login", 5)) {
 			if (auth[32])
