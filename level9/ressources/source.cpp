@@ -5,17 +5,17 @@ class N {
 	public:
 		N(int x) : m_x(x) {}
 
-		void N::setAnnotation(const char *arg)
+		void	setAnnotation(char *arg)
 		{
 			std::memcpy(m_buffer, arg, std::strlen(arg));
 		}
 
-		virtual int	N::operator+(const N &other)
+		virtual int	operator+(N &other)
 		{
 			return m_x + other.m_x;
 		}
 
-		virtual int	N::operator-(const N &other)
+		virtual int	operator-(N &other)
 		{
 			return m_x - other.m_x;
 		}
