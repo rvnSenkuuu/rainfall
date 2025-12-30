@@ -35,5 +35,5 @@ int	main(int argc, char **argv)
 
 	a->setAnnotation(argv[1]);
 
-	return *a + *b;
+	return *b + *a;
 }
