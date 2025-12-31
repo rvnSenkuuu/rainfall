@@ -5,7 +5,7 @@ Pour ce niveau pour la premiere fois depuis le projet on a faire avec un executa
 Apres l'avoir decortiquer avec `ghidra` ce que fait l'executable est d'alloue sur la `heap` deux instances d'une classe nommee `N` avec 3 methodes:`setAnnotation`, deux operateur virtuel `+` et `-`
 puis deux membres: un `entier` et un `buffer`
 
-La porte d'entree pour exploiter une faille ce trouve dans la methode `setAnnotation` copiant `argv[1]` dans le buffer avec `memcpy` sans faire un check sur la taille envoyer en parametre
+La porte d'entree pour exploiter une faille se trouve dans la methode `setAnnotation` copiant `argv[1]` dans le buffer avec `memcpy` sans faire un check sur la taille envoyer en parametre
 
 Voici un apercu de la heap
 
@@ -43,7 +43,7 @@ Notre payload sera donc composer de:
 - Padding necessaire
 - L'adresse du debut de notre buffer
 
-Lors de l’appel a l’operateur virtuel le programme lit le pointeur de vtable puis appelle la premiere entree de cette table puis execute notre shellcode
+Lors de l’appel a l’operateur virtuel le programme lit le pointeur de vtable puis appelle la premiere entree de cette table et execute notre shellcode
 
 ```bash
 level9@RainFall:~$ ./level9 $(python /tmp/exploit.py)
