@@ -2,38 +2,38 @@
 #include <stdio.h>
 #include <string.h>
 
-void	p(char *param1, char *param2)
+void	p(char *input, char *delim)
 {
 	char	*buffer_newline;
 	char	buffer[4104];
 
-	puts(param2);
+	puts(delim);
 	read(stdin, buffer, 4096);
 	buffer_newline = strchr(buffer, '\n');
 	*buffer_newline = '\0';
-	strncpy(param1, buffer, 20);
+	strncpy(input, buffer, 20);
 }
 
-void	pp(char *buffer)
+void	pp(char *dest)
 {
 	size_t	len;
-	char	a[20];
-	char	b[20];
+	char	first_input[20];
+	char	second_input[20];
 
-	p(a, " - ");
-	p(b, " - ");
-	strcpy(buffer, a);
-	len = strlen(buffer);
-	buffer[len] = ' ';
-	buffer[len + 1] = '\0';
-	strcat(buffer, b);
+	p(first_input, " - ");
+	p(second_input, " - ");
+	strcpy(dest, first_input);
+	len = strlen(dest);
+	dest[len] = ' ';
+	dest[len + 1] = '\0';
+	strcat(dest, second_input);
 }
 
 int	main(void)
 {
-	char	buffer[42];
+	char	dest[42];
 
-	pp(buffer);
-	puts(buffer);
+	pp(dest);
+	puts(dest);
 	return 0;
 }
