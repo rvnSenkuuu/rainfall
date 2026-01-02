@@ -19,6 +19,5 @@ int	main(int argc, char **argv)
 	} else {
 		ret = 1;
 	}
-
 	return ret;
 }
