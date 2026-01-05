@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int	language;
+
+int	greetuser(char *src)
+{
+	char	dest[64];
+
+	switch (language) {
+	case 1:
+		strcpy(dest, "Hyvää päivää ");
+		break;
+	case 2:
+		strcpy(dest, "Goedemiddag! ");
+		break;
+	case 0:
+		strcpy(dest, "Hello ");
+		break;
+	}
+
+	strcat(dest, src);
+	return puts(dest);
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc != 3)
+		return 1;
+
+	char	first_name[40] = {0};
+	char	last_name[32] = {0};
+	char	*lang;
+	
+	strncpy(first_name, argv[1], 40);
+	strncpy(last_name, argv[2], 32);
+
+	lang = getenv("LANG");
+	if (lang) {
+		if (!memcmp(lang, "fi", 2))
+			language = 1;
+		if (!memcmp(lang, "nl", 2))
+			language = 2;
+	}
+
+	return greetuser(first_name);
+}
