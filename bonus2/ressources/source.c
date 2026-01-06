@@ -29,12 +29,11 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 		return 1;
 
-	char	first_name[40] = {0};
-	char	last_name[32] = {0};
+	char	user_input[72];
 	char	*lang;
 	
-	strncpy(first_name, argv[1], 40);
-	strncpy(last_name, argv[2], 32);
+	strncpy(user_input, argv[1], 40);
+	strncpy(&user_input[40], argv[2], 32);
 
 	lang = getenv("LANG");
 	if (lang) {
@@ -44,5 +43,5 @@ int	main(int argc, char **argv)
 			language = 2;
 	}
 
-	return greetuser(first_name);
+	return greetuser(user_input);
 }
