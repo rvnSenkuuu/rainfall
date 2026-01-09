@@ -1,5 +1,19 @@
 # Level 0
 
+```bash
+level0@RainFall:~$ checksec --file level0 
+RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      FILE
+No RELRO        No canary found   NX enabled    No PIE          No RPATH   No RUNPATH   level0
+```
+
+RELRO (Relocation Read-Only) est une mitigation pour binaires ELF qui rend les tables de relocation/GOT en lecture seule apres le chargement afin d'empecher la modification des pointeurs de fonctions ou donnees par des attaques
+
+Stack Canary est une valeur aleatoire placee entre la stack de la fonction et son retour pour detecter les buffer overflow si la valeur est modifiee avant le retour le programme detecte l'attaque et abortit
+
+NX (No eXecute) est une protection memoire qui marque les pages de donnees comme non executables empechant l'execution de code injecte dans des zones comme la stack ou la heap
+
+PIE (Position-Independent Executable) est un binaire executable compile pour etre charge a une adresse memoire aleatoire ses codes et donnees utilisent des adresses independantes de la position permettant l'ASLR  (Address Space Layout Randomization) complete du binaire pour rendre plus difficile la prediction d'adresses utiles aux attaquants
+
 Nous pouvons voir qu'on a uniquement un executable `level0` avec des permissions setuid ce qui signifie qu'on va l'executer avec les permissions du prochain level
 
 ```bash
