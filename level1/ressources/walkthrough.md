@@ -45,7 +45,7 @@ Si on execute `level1` on peut voir qu'il attend un input de la part de l'utilis
 
 Grace au resultat de objdump on peut s'apercevoir que:
 
-	1- Au debut de la fonction main il reserve 80 octets pour la stack frame, dont le buffer commence a esp+0x10(16 octets), ce qui laisse 76 octets jusqu’a l’adresse de retour
+	1- Au debut de la fonction main il reserve 88 octets pour la stack frame, dont le buffer commence a esp+0x10(16 octets), ce qui laisse 76 octets jusqu’a l’adresse de retour
 	2- L'input de l'utilisateur est lu avec 'gets' => man 3 gets => section BUGS
 	3- L'existence d'une fonction 'run' mais jamais appeler qui fait un appel a 'system' en argument "/bin/sh"
 

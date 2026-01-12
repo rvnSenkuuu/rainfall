@@ -5,7 +5,7 @@ Pour ce niveau le programme prends deux arguments et affiche un message de salut
 Apres avoir reecrit une version plus lisible du programme on peut voir plusieurs choses
 
 	- Une utilisation de strncpy qui encore une fois ne garantit pas d'avoir une chaine de caractere avec un caractere de terminaison a la fin
-	- Une utilisation de strcat dans la fonction greetuser qui concatene une chaine de caractere plus grande que celle envoyer en parametre nous permettant de pouvoir faire un overflow de buffer pour ecraser
+	- Une utilisation de strcat dans la fonction greetuser qui concatene une chaine de caractere plus grande que celle envoyer en parametre nous permettant de pouvoir faire un overflow de buffer pour ecraser EIP
 
 L'executable n'ayant pas de fonction appelant un syscall pour pouvoir executer un shell on peut alors injecter un shellcode le meme utiliser dans les niveaux precedents en passant par une variable d'environnement
 
