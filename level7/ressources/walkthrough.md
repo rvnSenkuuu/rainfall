@@ -28,7 +28,7 @@ Et maintenant l'adresse de la fonction `m`
 $1 = {<text variable, no debug info>} 0x80484f4 <m>
 ```
 
-Notre executable prenant deux parametres nous allons utiliser le premier et son utilisation dans le premier appel de `strcpy` pour faire un depassement de memoire jusqu'a atteindre le chunk du buffer dans la deuxieme structure pour y ecrire l'adresse de `puts`
+Notre executable prenant deux parametres nous allons utiliser le premier et son utilisation dans le premier appel de `strcpy` pour faire un depassement de memoire jusqu'a atteindre le chunk de l'adresse du buffer dans la deuxieme structure pour y ecrire l'adresse de `puts`
 
 Le second `strcpy` écrit indirectement dans `puts@got.plt` grâce au pointeur corrompu
 
